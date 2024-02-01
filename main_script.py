@@ -75,12 +75,21 @@ def filter_out_key(*filters):
     return creature_stats[~(pd.concat(conditions, axis=1).any(axis=1))]
 
 def plot_settings():
+    '''
+    Edit plot settings here, or alternative save the figure by uncommenting plt.savefig().
+    The default settings should be fine, but feel free to play around with them.
+    '''
+    textsize = 14
     
-    plt.title("Insert title here.")
-    plt.xticks(np.arange(-1, 26, 2))
-    plt.xlabel("Creature level")
-    plt.ylabel("Insert y axis description here.")
-    plt.legend()
+    plt.title("Insert short and descriptive title here.", fontsize=textsize)
+    
+    plt.xticks(np.arange(-1, 26, 2), fontsize=textsize)
+    plt.xlabel("Creature level", fontsize=textsize)
+    
+    plt.yticks(fontsize=textsize)
+    plt.ylabel("Insert y axis description here.", fontsize=textsize)
+    
+    plt.legend(fontsize=textsize)
     plt.grid()
     
     # plt.savefig("./testfig.png", dpi=250)
@@ -88,6 +97,9 @@ def plot_settings():
 
 def main():
 
+    # creating an empty plot, change figsize if it is too big/small for your monitor
+    plt.figure(figsize=(20, 12))
+    
     # filter data here, example provided:
     keywords = (("Immunities", "mental"),
                 ("Traits", "swarm"),
