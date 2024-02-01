@@ -75,7 +75,7 @@ def main():
     filtered_creatures = filter_out_key(creature_stats, *keywords)
     
     # calling functions to plot, for stat try plotting out AC or saves
-    plot_per_level(filtered_creatures, "Will", saves_by_level)
+    plot_per_level(filtered_creatures, "Will", saves_by_level, marker=".")
     
     # plotting baseline, always use relative data for this
     baseline(saves_by_level_rel)

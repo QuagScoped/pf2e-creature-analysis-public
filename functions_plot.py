@@ -10,7 +10,7 @@ This is a library file, feel free to read the function descriptions.
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def plot_per_level(creatures_dataset, stat, correction_data):
+def plot_per_level(creatures_dataset, stat, correction_data, label=None, marker="."):
     '''
     Parameters
     ----------
@@ -18,6 +18,8 @@ def plot_per_level(creatures_dataset, stat, correction_data):
     stat : The stat you want to find the mean per level of. Choose between AC, saves or ability modifiers.
     correction_data : The dataset per level of the stat you want to analyse.
     Usually saves_by_level_rel, ac_by_level_rel or mods_by_level_rel.
+    label : You can manually define the label here.
+    marker : define the marker, use "." or "-" for the best results
 
     Returns
     -------
@@ -28,7 +30,10 @@ def plot_per_level(creatures_dataset, stat, correction_data):
     merged_filter = pd.merge(mean_per_level, correction_data[["Level", "Moderate"]], on="Level", how="left")
     merged_filter[stat] -= merged_filter["Moderate"]
     
-    plt.plot(merged_filter["Level"], merged_filter[stat], ".", label=f"Mean {stat} of filtered creatures", markersize=14)
+    if label is None:
+        label = f"Mean {stat} of filtered creatures"
+    
+    plt.plot(merged_filter["Level"], merged_filter[stat], marker, label=label, markersize=14)
 
 def baseline(baseline_data):
     '''
