@@ -23,8 +23,10 @@ from functions import baseline
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 
 # global file imports
+os.chdir(path)
 creature_stats = pd.read_excel("./datasets/all_books_creatures.xlsx")
 
 saves_by_level = pd.read_excel("./datasets/saves_by_level.xlsx")
@@ -94,7 +96,7 @@ def main():
    
     filtered_creatures = filter_out_key(*keywords)
     
-    # calling functions to plot
+    # calling functions to plot, for stat try plotting out AC or saves
     plot_per_level(filtered_creatures, "Will", saves_by_level)
     
     # plotting baseline, always use relative data for this
