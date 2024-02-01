@@ -17,10 +17,12 @@ sys.path.append(path)
 
 # function imports
 from functions import plot_per_level
+from functions import baseline
 
 # library imports
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 # global file imports
 creature_stats = pd.read_excel("./datasets/all_books_creatures.xlsx")
@@ -71,25 +73,34 @@ def filter_out_key(*filters):
     return creature_stats[~(pd.concat(conditions, axis=1).any(axis=1))]
 
 def plot_settings():
-    print("Hello world.")
+    
+    plt.title("Insert title here.")
+    plt.xticks(np.arange(-1, 26, 2))
+    plt.xlabel("Creature level")
+    plt.ylabel("Insert y axis description here.")
+    plt.legend()
     plt.grid()
+    
     # plt.savefig("./testfig.png", dpi=250)
     plt.show()
 
 def main():
 
-    # filter data here
+    # filter data here, example provided:
     keywords = (("Immunities", "mental"),
                 ("Traits", "swarm"),
                 ("Traits", "mindless")
         )
    
-    filtered_creatures = filter_by_key(*keywords)
+    filtered_creatures = filter_out_key(*keywords)
     
-    # calling functions
+    # calling functions to plot
     plot_per_level(filtered_creatures, "Will", saves_by_level)
+    
+    # plotting baseline, always use relative data for this
+    baseline(saves_by_level_rel)
         
-    # showing the plot, look in the function if you want to change any settings
+    # showing the plot, look in the function plot_settings() above if you want to change anything and/or save it
     plot_settings()
     
 if __name__ == '__main__':

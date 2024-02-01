@@ -17,5 +17,8 @@ def plot_per_level(creatures_dataset, stat, correction_data):
     merged_filter = pd.merge(mean_per_level, correction_data[["Level", "Moderate"]], on="Level", how="left")
     merged_filter[stat] -= merged_filter["Moderate"]
     
-    plt.plot(merged_filter["Level"], merged_filter[stat], ".", label=f"Mean {stat} of filtered creatures.", markersize=14)
+    plt.plot(merged_filter["Level"], merged_filter[stat], ".", label=f"Mean {stat} of filtered creatures", markersize=14)
 
+def baseline(baseline_data):
+    
+    plt.plot(baseline_data["Level"], baseline_data["Moderate"], "k", label="Moderate baseline (GMG)", markersize=14)
