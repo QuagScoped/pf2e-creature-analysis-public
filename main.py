@@ -18,6 +18,8 @@ sys.path.append(path)
 # function imports
 from functions_plots import plot_per_level
 from functions_plots import baseline
+from functions_filter import filter_by_key
+from functions_filter import filter_out_key
 
 # library imports
 import pandas as pd
@@ -37,42 +39,6 @@ ac_by_level_rel = pd.read_excel("./datasets/ac_by_level_rel.xlsx")
     
 mods_by_level = pd.read_excel("./datasets/abilities_by_level.xlsx")
 mods_by_level_rel = pd.read_excel("./datasets/abilities_by_level_rel.xlsx")
-
-def filter_by_key(*filters):
-    '''
-    Parameters
-    ----------
-    *filters : the keywords (traits/languages/source/immunities/sizes) of the creatures you want to keep
-    format as ("keyword type", keyword1), ("keyword type", keyword2)
-    valid keywords: Traits, Languages, Source, Size, Immunities, Resistances, Weaknesses (and technically Name)
-
-    Returns
-    -------
-    the list of creatures matching the traits you want to filter by
-    '''
-    conditions = [
-        creature_stats[column].apply(lambda x: term in str(x))
-        for column, term in filters
-    ]
-    return creature_stats[(pd.concat(conditions, axis=1).sum(axis=1) > 0)]
-
-def filter_out_key(*filters):
-    '''
-    Parameters
-    ----------
-    *filters : the keywords (traits/languages/source/immunities/sizes) of the creatures you want to remove
-    format as ("keyword type", keyword1), ("keyword type", keyword2)
-    valid keywords: Traits, Languages, Source, Size, Immunities, Resistances, Weaknesses (and technically Name)
-
-    Returns
-    -------
-    the list of creatures without the traits you want to filter by
-    '''
-    conditions = [
-        creature_stats[column].apply(lambda x: term in str(x))
-        for column, term in filters
-    ]
-    return creature_stats[~(pd.concat(conditions, axis=1).any(axis=1))]
 
 def plot_settings():
     '''
@@ -106,7 +72,7 @@ def main():
                 ("Traits", "mindless")
         )
    
-    filtered_creatures = filter_out_key(*keywords)
+    filtered_creatures = filter_out_key(creature_stats, *keywords)
     
     # calling functions to plot, for stat try plotting out AC or saves
     plot_per_level(filtered_creatures, "Will", saves_by_level)
