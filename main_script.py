@@ -12,7 +12,7 @@ Steps to using this file:
 
 # change working directory to import
 import sys
-path = r"C:\Users\Alexander\Desktop\Code Projects\pf2e-creature-analysis-public"
+path = "C:/Users/Alexander/Desktop/Code Projects/pf2e-creature-analysis-public"
 sys.path.append(path)
 
 # function imports
