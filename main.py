@@ -16,8 +16,8 @@ path = "C:/Users/Alexander/Desktop/Code Projects/pf2e-creature-analysis-public"
 sys.path.append(path)
 
 # function imports
-from functions import plot_per_level
-from functions import baseline
+from functions_plotting import plot_per_level
+from functions_plotting import baseline
 
 # library imports
 import pandas as pd
