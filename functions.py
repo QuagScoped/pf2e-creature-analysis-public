@@ -2,7 +2,9 @@
 """
 Created on Thu Feb  1 01:25:51 2024
 
-@author: Alexander
+@author: quagscoped
+
+This is a library file, you should not be here.
 """
 
 def plot_perlevel():

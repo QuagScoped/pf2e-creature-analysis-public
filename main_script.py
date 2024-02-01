@@ -2,11 +2,12 @@
 """
 Created on Thu Feb  1 00:49:48 2024
 
-@author: Alexander
+@author: quagscoped
 
 Steps to using this file:
-1. Define working directory with path=""
-2.
+1. Define working directory with path="" at the top
+2. Go to the main() function along the bottom and follow the steps
+3. Message quagscoped on discord if you have any questions
 """
 
 # change working directory to import
@@ -27,7 +28,7 @@ def filter_by_key(*filters):
     '''
     Parameters
     ----------
-    *filters : the keywords (traits/languages/source/immunities) of the creatures you want to keep
+    *filters : the keywords (traits/languages/source/immunities/sizes) of the creatures you want to keep
     format as ("keyword type", keyword1), ("keyword type", keyword2)
 
     Returns
@@ -52,6 +53,8 @@ def main():
     
     mods_by_level = pd.read_excel("./datasets/abilities_by_level.xlsx")
     mods_by_level_rel = pd.read_excel("./datasets/abilities_by_level_rel.xlsx")
+   
+   # filter data here 
    
     # calling functions
     
