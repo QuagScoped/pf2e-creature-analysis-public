@@ -19,7 +19,7 @@ def plot_per_level(creatures_dataset, stat, correction_data, label=None, marker=
     correction_data : The dataset per level of the stat you want to analyse.
     Usually saves_by_level_rel, ac_by_level_rel or mods_by_level_rel.
     label : You can manually define the label here.
-    marker : define the marker, use "." or "-" for the best results
+    marker : define the marker, use "." or "-" for the best results.
 
     Returns
     -------
@@ -35,15 +35,20 @@ def plot_per_level(creatures_dataset, stat, correction_data, label=None, marker=
     
     plt.plot(merged_filter["Level"], merged_filter[stat], marker, label=label, markersize=14)
 
-def baseline(baseline_data):
+def baseline(baseline_data, scale="Moderate", label=None):
     '''
     Parameters
     ----------
     baseline_data : The relative dataset per level of the stat you want to plot.
     Usually saves_by_level_rel, ac_by_level_rel or mods_by_level_rel.
+    scale : difficulty scale to compare to, for example "Low", "Moderate", "High" or "Extreme".
+    label : You can manually define the label here.
 
     Returns
     -------
     None, but plots horizontal line at y=0 to represent moderate baseline.
     '''
-    plt.plot(baseline_data["Level"], baseline_data["Moderate"], "k", label="Moderate baseline (GMG)", markersize=14)
+    if label is None:
+        label = f"{scale} baseline (GMG)"
+    
+    plt.plot(baseline_data["Level"], baseline_data[scale], "k", label=label, markersize=14)
