@@ -10,7 +10,7 @@ Steps to using this file:
 3. Message quagscoped on discord if you have any questions
 """
 
-# change working directory to import
+# add directory path to import from
 import sys
 path = "C:/Users/Alexander/Desktop/Code Projects/pf2e-creature-analysis-public"
 sys.path.append(path)
